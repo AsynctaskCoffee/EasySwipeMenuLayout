@@ -1,4 +1,4 @@
-package com.guanaj.easyswipemenulibrary;
+package com.guanaj.easyswipemenulayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,7 +14,8 @@ import android.widget.Scroller;
 
 import java.util.ArrayList;
 
-import static com.guanaj.easyswipemenulibrary.State.CLOSE;
+import static com.guanaj.easyswipemenulayout.State.CLOSE;
+
 
 /**
  * Created by guanaj on 2017/6/5.
@@ -300,13 +301,16 @@ public class EasySwipeMenuLayout extends ViewGroup {
                         //      scrollTo(mRightView.getRight() - mContentView.getRight() - mContentViewLp.rightMargin, 0);
                         //  }
                         Log.e("scroll points", "" + getScrollX() + "   " + (mRightView.getRight() - mContentView.getRight() - mContentViewLp.rightMargin));
-//                        if (getScrollX() > (mRightView.getRight() - mContentView.getRight() - mContentViewLp.rightMargin)) {
-//                            findViewById(R.id.right_fake).setVisibility(View.VISIBLE);
-//                            findViewById(R.id.right_holder).setVisibility(View.INVISIBLE);
-//                        } else {
-//                            findViewById(R.id.right_fake).setVisibility(View.INVISIBLE);
-//                            findViewById(R.id.right_holder).setVisibility(View.VISIBLE);
-//                        }
+                        if (getScrollX() > (mRightView.getRight() - mContentView.getRight() - mContentViewLp.rightMargin)) {
+                            findViewById(R.id.right_fake).setVisibility(View.VISIBLE);
+                            findViewById(R.id.right_holder).setVisibility(View.INVISIBLE);
+                        } else {
+                            findViewById(R.id.right_fake).setVisibility(View.INVISIBLE);
+                            findViewById(R.id.right_holder).setVisibility(View.VISIBLE);
+                        }
+                        if (getScrollX() > (mContentView.getRight() - mContentViewLp.rightMargin) / 2) {
+                            scrollTo((mContentView.getRight() - mContentViewLp.rightMargin) / 2, 0);
+                        }
                     }
                 }
                 //当处于水平滑动时，禁止父类拦截
@@ -442,7 +446,7 @@ public class EasySwipeMenuLayout extends ViewGroup {
             //2、关闭右边按钮
 
             if (getScrollX() > 0 && mRightView != null) {
-                return State.CLOSE;
+                return CLOSE;
             }
         } else if (finalyDistanceX > 0) {
             //⬅️滑动
@@ -456,11 +460,11 @@ public class EasySwipeMenuLayout extends ViewGroup {
             }
             //关闭左边
             if (getScrollX() < 0 && mLeftView != null) {
-                return State.CLOSE;
+                return CLOSE;
             }
         }
 
-        return State.CLOSE;
+        return CLOSE;
 
     }
 

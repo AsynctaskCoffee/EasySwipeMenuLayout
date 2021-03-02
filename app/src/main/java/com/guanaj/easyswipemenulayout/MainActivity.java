@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         myAdapter = new MyAdapter(R.layout.item_rv_swipemenu, null);
         recyclerView.setAdapter(myAdapter);
         inflater = getLayoutInflater();
-
     }
 
     private void initIEvent() {
